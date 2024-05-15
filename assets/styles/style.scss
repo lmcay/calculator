@@ -1,0 +1,57 @@
+$primary-color: rgb(150, 0, 49);
+$secondary-color: rgb(26, 26, 27);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: $secondary-color;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid $primary-color;
+    
+    .display {
+        width: 100%;
+        padding: 2em;
+        font-size: 20px;
+        background-color: $secondary-color;
+        border: 1px solid $primary-color;
+        margin-bottom: 10px;
+        color: hsl(0, 17%, 78%);
+    }
+    
+    #keys {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2px;
+        
+        button {
+            height: 60px;
+            width: 90px;
+            font-size: 24px;
+            cursor: crosshair;
+            background-color: hsl(0, 17%, 78%);
+            
+            &:nth-of-type(4),
+            &:nth-of-type(8),
+            &:nth-of-type(12),
+            &:nth-of-type(16),
+            &:nth-of-type(20),
+            &:nth-of-type(24) {
+                background-color: $primary-color;
+                color: $secondary-color;
+            }
+        }
+    }
+}
+    

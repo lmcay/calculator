@@ -1,44 +1,43 @@
 const display = document.querySelector('.display');
+let equation = localStorage.getItem('equation') || '';
+
+display.value = equation;
 
 function appendDisplay(keys) {
-    display.value += keys;
+    equation += keys;
+    localStorage.setItem('equation', equation);
+    display.value = equation;
 }
 
 function clearDisplay() {
     display.value = "";
+    equation = '';
+    localStorage.removeItem('equation');
 }
 
 function deleteOne() {
     display.value = display.value.slice(0, -1);
+    equation = display.value;
 }
 
-function sin() {
-    display.value = Math.sin(toRadians(display.value));
+function trigo(concept){
+    if(concept === 'sin'){
+        display.value = Math.sin(toRadians(display.value));
+    } else if (concept === 'cos') {
+        display.value = Math.cos(toRadians(display.value));
+    } else if (concept === 'tan') {
+        display.value = Math.tan(toRadians(display.value));
+    } else if (concept === 'csc') {
+        display.value = 1 / Math.sin(toRadians(display.value));
+    } else if (concept === 'sec') {
+        display.value = 1 / Math.cos(toRadians(display.value));
+    } else if (concept === 'cot') {
+        display.value = 1 / Math.tan(toRadians(display.value));
+    } else if (concept === 'root') {
+        display.value = Math.sqrt(display.value);
+    }
 }
 
-function cos() {
-    display.value = Math.cos(toRadians(display.value));
-}
-
-function tan() {
-    display.value = Math.tan(toRadians(display.value));
-}
-
-function csc() {
-    display.value = 1 / Math.sin(toRadians(display.value));
-}
-
-function sec() {
-    display.value = 1 / Math.cos(toRadians(display.value));
-}
-
-function cot() {
-    display.value = 1 / Math.tan(toRadians(display.value));
-}
-
-function squareRoot() {
-    display.value = Math.sqrt(display.value);
-}
 
 function toRadians(degrees) {
     return degrees * (Math.PI / 180);
@@ -47,9 +46,11 @@ function toRadians(degrees) {
 function calculate() {
     try {
         display.value = eval(display.value);
+        equation = display.value;
     }
     catch(error) {
         display.value = "Error";
+        equation = '';
     }
 }
 
